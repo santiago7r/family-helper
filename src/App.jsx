@@ -7,6 +7,8 @@ import {listLists} from './graphql/queries'
 import '@aws-amplify/ui-react/styles.css';
 import awsConfig from './aws-exports';
 import { useEffect, useState } from 'react';
+import 'semantic-ui-css/semantic.min.css'
+import MainHeader from './components/headers/MainHeader';
 
 Amplify.configure(awsConfig);
 
@@ -32,11 +34,11 @@ function App() {
     <Authenticator>
       {({ signOut }) => (
         <main>
-          <h1>Welcome to Amplify</h1>
+          <button onClick={signOut}>Sign out</button>
+          <MainHeader />
           <ul>
             {list.map(item => <li key={item.id}>{item.title}</li>)}
           </ul>
-          <button onClick={signOut}>Sign out</button>
         </main>
       )}
     </Authenticator>
