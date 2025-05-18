@@ -9,6 +9,7 @@ import awsConfig from './aws-exports';
 import { useEffect, useState } from 'react';
 import 'semantic-ui-css/semantic.min.css'
 import MainHeader from './components/headers/MainHeader';
+import Lists from './components/Lists/Lists';
 
 Amplify.configure(awsConfig);
 
@@ -16,14 +17,13 @@ const client = generateClient();
 
 
 function App() {
-  const [list, setList] = useState([])
+  const [lists, setLists] = useState([])
 
   async function fetchList() {
     const { data } = await client.graphql({
       query: listLists,
     });
-    setList(data.listLists.items)
-    console.log(data)
+    setLists(data.listLists.items)
   }
   
   useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
           <button onClick={signOut}>Sign out</button>
           <MainHeader />
           <ul>
-            {list.map(item => <li key={item.id}>{item.title}</li>)}
+            <Lists lists={lists} />
           </ul>
         </main>
       )}
