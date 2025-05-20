@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import 'semantic-ui-css/semantic.min.css'
 import MainHeader from './components/headers/MainHeader';
 import Lists from './components/Lists/Lists';
-import { Container } from 'semantic-ui-react';
+import { Button, Container, Icon } from 'semantic-ui-react';
 
 Amplify.configure(awsConfig);
 
@@ -36,6 +36,9 @@ function App() {
       {({ signOut }) => (
         <main>
           <button onClick={signOut}>Sign out</button>
+          <Button className='floatingButton'>
+            <Icon name='plus' className='floatingButton_icon'/>
+          </Button>
           <Container>
             <MainHeader />
             <ul>
